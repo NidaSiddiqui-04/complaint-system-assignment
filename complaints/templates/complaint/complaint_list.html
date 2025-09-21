@@ -1,0 +1,27 @@
+{%extends 'complaint/base.html'%}
+{%block content%}
+<div class="row justify-content-center" style="text-align: center;">
+<h2>All Complaints</h2>
+<div class="mt-4 ">
+  {% for complain in complaint %}
+  <div style="text-align: center; background-color: rgb(231, 242, 239); margin-left: 200px; margin-right: 200px;">
+    <p>User: {{ complain.user.username }}</p>
+    <p>Title: {{ complain.title }}</p>
+    <p>Category: {{ complain.category }}</p>
+    <p>Status {{ complain.status }}</p>
+  
+     <p >Updated_date:{{complain.updated_date}} </p>
+    
+    <p>
+     <form method="get" action="{%url 'complaint:update_status' complain.id %}">
+    <button type="submit" style="background-color: rgb(9, 4, 26); color: aliceblue; width: 200; height: 40; font-size: large;margin-bottom: 20px;">
+        update
+    </button>
+</form>
+    </p>
+  </div>
+
+  {% endfor %}
+  </div>
+</div>
+  {%endblock%}

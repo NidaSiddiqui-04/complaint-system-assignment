@@ -1,0 +1,47 @@
+ 
+{%extends 'complaint/base.html'%}
+{%block content%}
+
+  <h2>Admin Dashboard</h2>
+
+  <!-- JSON में category data embed -->
+  {{ category_summary|json_script:"category-data" }}
+
+  <div class="row">
+    <div class="col-md-6" style="width: 600px; height: 600px; margin: auto;">
+      <canvas id="categoryChart"></canvas>
+    </div>
+    <div class="col-md-6">
+      <h4>Unresolved Complaints</h4>
+      <ul class="list-group">
+        {% for c in unresolved %}
+          <li class="list-group-item">
+            {{ c.title }} ({{ c.status }}) - {{ c.user.username }}
+          </li>
+        {% empty %}
+          <li class="list-group-item">All complaints resolved 🎉</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const categoryData = JSON.parse(document.getElementById('category-data').textContent);
+  const labels = categoryData.map(obj => obj.category);
+  const data = categoryData.map(obj => obj.count);
+
+  new Chart(document.getElementById('categoryChart'), {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: ['#FF6384','#36A2EB','#FFCE56','#4CAF50']
+      }]
+    }
+  });
+</script>
+{%endblock%}

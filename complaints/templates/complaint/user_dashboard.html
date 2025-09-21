@@ -1,0 +1,40 @@
+{% extends "complaint/base.html" %}
+
+{% block content %}
+  <h2>User Dashboard</h2>
+  <p><strong>Total Complaints:</strong> {{ total }}</p>
+
+  <h4 class="mt-4">My Complaints</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for complain in complaints %}
+        <tr>
+          <td>{{ complain.title }}</td>
+          <td>{{ complain.status }}</td>
+          <td>{{ complain.created_date}}</td>
+          <td>{{ complain.updated_date}}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4" class="text-center">No complaints submitted yet.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    
+  </table>
+      <form action="{% url 'complaint:add_complaint' %}" method="get">
+    <button type="submit" style="background-color: rgb(9, 4, 26); color: aliceblue; width: 200; height: 40; font-size: large;" class="w-100">
+        Add
+    </button>
+</form>
+
+
+{% endblock %}

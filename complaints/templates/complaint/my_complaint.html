@@ -1,0 +1,22 @@
+
+<div style="text-align: center ; background-color:rgb(254, 197, 246);">
+    <h1>My Complaints</h1>
+    <div style="padding-bottom: 20;">
+{%for item in complaint%}
+ <div>
+    <div >
+   <div style="background-color: rgb(219, 141, 208); margin-left:450px; margin-right: 450px; margin-bottom: 50px;"><p style="font-weight: 700; font-size: x-large;">Title: {{item.title}}</p><div>
+   <div><p>Category: {{item.category}}</p></div>
+   <div><p>Status: {{item.status}}</p></div>
+   <div><p>description: {{item.description}}</p></div>
+   <div style="padding-bottom:10px;"><p>Date: {{item.updated_date}}</p></div>
+   <div style="padding-bottom: 30px;" >
+    <button href="" style="margin-right: 20px; background-color: rgb(197, 98, 175); font-size:large;">Edit</button>
+    
+    <button href="" style="margin-left: 20px; background-color: rgb(197, 98, 175); font-size: large;">Delete</button>
+   </div>
+   </div>
+</div>
+{%endfor%}
+</div>
+</div>

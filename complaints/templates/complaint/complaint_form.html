@@ -1,0 +1,25 @@
+{%extends 'complaint/base.html'%}
+{%block content%}
+<div class="container mt-4" >
+    <div class="row justify-content-center">
+        <div class="col col-md-4">
+    <h2>Add Complaint</h2>
+   
+<form method="post" class="">
+    
+    {%csrf_token%}
+   <div ><h5>Title:<p>{{form.title}}</p></h5></div>
+   <div  ><h5>Description:<p style= >{{form.description}}</p></h5></div>
+   <div ><h5>Category:<p>{{form.category}}</p></h5></div>
+      <div><h5>Attachments:<p>{{form.attachment}}</p></h5></div>
+
+
+
+    {{form.username}}
+    <button type="submit" class="bg-dark w-100" style="color: white;">Submit</button>
+
+</form>
+    </div>
+</div>
+</div>
+{%endblock%}

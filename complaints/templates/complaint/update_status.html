@@ -1,0 +1,22 @@
+ {%extends 'complaint/base.html'%}
+ 
+ {%block content%}
+ <div style="text-align: center;">
+ <h2>Update Complaint Status</h2>
+ <div style="margin-top: 80px;">
+<p><b>{{ complaint.title }}</b> - Current status: {{ complaint.status }}</p>
+
+<form method="POST">
+  {% csrf_token %}
+  <select name="status">
+    {% for value, label in complaint.STATUS_CHOICES %}
+      <option value="{{ value }}" {% if value == complaint.status %}selected{% endif %}>
+        {{ label }}
+      </option>
+    {% endfor %}
+  </select>
+  <button type="submit" class="bg-dark" style="color: aliceblue;">Update</button>
+</form>
+ </div>
+ </div>
+{%endblock%}
